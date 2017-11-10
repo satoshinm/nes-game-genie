@@ -1,0 +1,27 @@
+{
+  "name": "nes-game-genie",
+  "version": "0.0.1",
+  "description": "Game Genie decoder/encoder for Nintendo Entertainment System",
+  "main": "gg.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satoshinm/nes-game-genie.git"
+  },
+  "keywords": [
+    "nes",
+    "gg",
+    "game",
+    "genie",
+    "game-genie",
+    "code"
+  ],
+  "author": "Satoshi N. M.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/satoshinm/nes-game-genie/issues"
+  },
+  "homepage": "https://github.com/satoshinm/nes-game-genie#readme"
+}

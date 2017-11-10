@@ -10,9 +10,6 @@ function toLetter(digit) {
   return LETTER_VALUES.substr(digit, 1);
 }
 
-console.log(toDigit("N"));
-console.log(toLetter(15));
-
 function decode(code) {
   const digits = code.split("").map(toDigit);
   console.log(digits);
@@ -29,7 +26,7 @@ function decode(code) {
     value += (digits[5] & 8);
   }
  
-  const wantskey = digits[2] >> 3;
+  const wantskey = !!(digits[2] >> 3);
   if (wantskey && digits.length != 8) {
     console.log(`warning: expected 8-letter code but only ${digits.length} letters`);
     // TODO: re-encode properly
@@ -64,11 +61,6 @@ function encode(address, value, key, wantskey) {
 
   return code;
 }
-
-// TODO: unit tests
-console.log(decode("SLXPLOVS"));
-console.log(encode(4387, 189, 222));
-//console.log(encode(4387, 189, undefined, true));
 
 module.exports = { encode, decode };
 

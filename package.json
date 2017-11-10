@@ -4,7 +4,7 @@
   "description": "Game Genie decoder/encoder for Nintendo Entertainment System",
   "main": "gg.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/satoshinm/nes-game-genie/issues"
   },
-  "homepage": "https://github.com/satoshinm/nes-game-genie#readme"
+  "homepage": "https://github.com/satoshinm/nes-game-genie#readme",
+  "devDependencies": {
+    "tape": "^4.8.0"
+  }
 }

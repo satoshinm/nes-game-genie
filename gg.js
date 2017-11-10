@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const LETTER_VALUES = "APZLGITYEOXUKSVN";
+const LETTER_VALUES = 'APZLGITYEOXUKSVN';
 
 function toDigit(letter) {
   return LETTER_VALUES.indexOf(letter);
@@ -11,7 +11,7 @@ function toLetter(digit) {
 }
 
 function decode(code) {
-  const digits = code.split("").map(toDigit);
+  const digits = code.split('').map(toDigit);
   console.log(digits);
 
   let value = ((digits[0] & 8) << 4) + ((digits[1] & 7) << 4) + (digits[0] & 7);
@@ -57,7 +57,7 @@ function encode(address, value, key, wantskey) {
     digits[7] = ((key >> 4) & 7) + (value & 8);
   }
 
-  const code = digits.map(toLetter).join("");
+  const code = digits.map(toLetter).join('');
 
   return code;
 }

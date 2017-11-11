@@ -1,6 +1,6 @@
 {
   "name": "nes-game-genie",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Game Genie decoder/encoder for Nintendo Entertainment System",
   "main": "gg.js",
   "scripts": {

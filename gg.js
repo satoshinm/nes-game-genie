@@ -12,7 +12,6 @@ function toLetter(digit) {
 
 function decode(code) {
   const digits = code.split('').map(toDigit);
-  console.log(digits);
 
   let value = ((digits[0] & 8) << 4) + ((digits[1] & 7) << 4) + (digits[0] & 7);
   const address = ((digits[3] & 7) << 12) + ((digits[4] & 8) << 8) + ((digits[5] & 7) << 8) +
@@ -27,12 +26,6 @@ function decode(code) {
   }
  
   const wantskey = !!(digits[2] >> 3);
-  if (wantskey && digits.length != 8) {
-    console.log(`warning: expected 8-letter code but only ${digits.length} letters`);
-    // TODO: re-encode properly
-  }
-
-  console.log(`value: ${value}\naddress: ${address}\nkey: ${key}\n`)
 
   return { value, address, wantskey, key };
 }

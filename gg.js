@@ -20,7 +20,7 @@ function decode(code) {
       ((digits[1] & 8) << 4) + ((digits[2] & 7) << 4) + (digits[3] & 8) + (digits[4] & 7);
   let key;
 
-  if (digits.length == 8) {
+  if (digits.length === 8) {
     value += (digits[7] & 8);
     key = ((digits[6] & 8) << 4) + ((digits[7] & 7) << 4) + (digits[5] & 8) + (digits[6] & 7);
   } else {

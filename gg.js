@@ -55,5 +55,36 @@ function encode(address, value, key, wantskey) {
   return code;
 }
 
-module.exports = { encode, decode };
+function toHex(n, width) {
+  const s = n.toString(16);
+  return '0000'.substring(0, width - s.length) + s;
+}
+
+function encodeHex(address, value, key, wantskey) {
+  let s = toHex(address, 4) + ':' + toHex(value, 2);
+
+  if (key !== undefined || wantskey) {
+    s += '?';
+  }
+
+  if (key !== undefined) {
+    s += toHex(key, 2);
+  }
+
+  return s;
+}
+
+function decodeHex(s) {
+  const match = s.match(/([0-9a-fA-F]+):([0-9a-fA-F]+)(\?[0-9a-fA-F]*)?/);
+  if (!match) return null;
+
+  const address = parseInt(match[1], 16);
+  const value = parseInt(match[2], 16);
+  const wantskey = match[3] !== undefined;
+  const key = (match[3] !== undefined && match[3].length > 1) ? parseInt(match[3].substring(1), 16) : undefined;
+
+  return { value, address, wantskey, key };
+}
+
+module.exports = { encode, decode, encodeHex, decodeHex };
 

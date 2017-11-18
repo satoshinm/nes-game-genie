@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('tape');
-const {decode, encode} = require('./');
+const {decode, encode, encodeHex, decodeHex} = require('./');
 
 test('decode no key', (t) => {
   t.equal(decode('SXIOPO').address, 0x11d9);
@@ -43,5 +43,49 @@ test('encode with key', (t) => {
   t.equal(decode(encode(0x1123, 0xbd, 0xde)).value, 0xbd);
   t.equal(decode(encode(0x1123, 0xbd, 0xde)).wantskey, true);
   t.equal(decode(encode(0x1123, 0xbd, 0xde)).key, 0xde);
+  t.end();
+});
+
+test('encode hex', (t) => {
+  t.equal(encodeHex(0x1123, 0xbd), '1123:bd');
+  t.equal(encodeHex(0x1123, 0xbd, 0xde), '1123:bd?de');
+  t.equal(encodeHex(0x1123, 0xbd, undefined, true), '1123:bd?');
+
+  t.equal(encodeHex(0x0123, 0x0b, 0x0e), '0123:0b?0e');
+  t.equal(encodeHex(0x0000, 0x00, 0x00), '0000:00?00');
+  t.end();
+});
+
+test('decode hex', (t) => {
+  t.equal(decodeHex('1123:bd?de').address, 0x1123);
+  t.equal(decodeHex('1123:bd?de').value, 0xbd);
+  t.equal(decodeHex('1123:bd?de').key, 0xde);
+  t.equal(decodeHex('1123:bd?de').wantskey, true);
+
+  t.equal(decodeHex('1123:bd').address, 0x1123);
+  t.equal(decodeHex('1123:bd').value, 0xbd);
+  t.equal(decodeHex('1123:bd').key, undefined);
+  t.equal(decodeHex('1123:bd').wantskey, false);
+
+  t.equal(decodeHex('1123:bd?').address, 0x1123);
+  t.equal(decodeHex('1123:bd?').value, 0xbd);
+  t.equal(decodeHex('1123:bd?').key, undefined);
+  t.equal(decodeHex('1123:bd?').wantskey, true);
+
+  t.equal(decodeHex('DEAD:BD?DE').address, 0xdead);
+  t.equal(decodeHex('DEAD:BD?DE').value, 0xbd);
+  t.equal(decodeHex('DEAD:BD?DE').key, 0xde);
+  t.equal(decodeHex('DEAD:BD?DE').wantskey, true);
+
+  t.equal(decodeHex('0123:0b?0e').address, 0x0123);
+  t.equal(decodeHex('0123:0b?0e').value, 0x0b);
+  t.equal(decodeHex('0123:0b?0e').key, 0x0e);
+  t.equal(decodeHex('0123:0b?0e').wantskey, true);
+
+  t.equal(decodeHex('0000:00?00').address, 0x0000);
+  t.equal(decodeHex('0000:00?00').value, 0x00);
+  t.equal(decodeHex('0000:00?00').key, 0x00);
+  t.equal(decodeHex('0000:00?00').wantskey, true);
+
   t.end();
 });

@@ -19,6 +19,15 @@ test('decode with key', (t) => {
   t.end();
 });
 
+test('decode lowercase', (t) => {
+  t.equal(decode('slxplovs').address, 0x1123);
+  t.equal(decode('slxplovs').value, 0xbd);
+  t.equal(decode('slxplovs').wantskey, true);
+  t.equal(decode('slxplovs').key, 0xde);
+  t.end();
+});
+
+
 test('encode no key', (t) => {
   t.equal(encode(0x11d9, 0xad), 'SXIOPO');
   t.equal(decode(encode(0x11d9, 0xad)).address, 0x11d9);
@@ -86,6 +95,20 @@ test('decode hex', (t) => {
   t.equal(decodeHex('0000:00?00').value, 0x00);
   t.equal(decodeHex('0000:00?00').key, 0x00);
   t.equal(decodeHex('0000:00?00').wantskey, true);
+
+  t.end();
+});
+
+test('decode hex with decode()', (t) => {
+  t.equal(decode('1123:bd?de').address, 0x1123);
+  t.equal(decode('1123:bd?de').value, 0xbd);
+  t.equal(decode('1123:bd?de').key, 0xde);
+  t.equal(decode('1123:bd?de').wantskey, true);
+
+  t.equal(decode('1123:bd').address, 0x1123);
+  t.equal(decode('1123:bd').value, 0xbd);
+  t.equal(decode('1123:bd').key, undefined);
+  t.equal(decode('1123:bd').wantskey, false);
 
   t.end();
 });

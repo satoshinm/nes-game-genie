@@ -11,7 +11,9 @@ function toLetter(digit) {
 }
 
 function decode(code) {
-  const digits = code.split('').map(toDigit);
+  if (code.indexOf(':') !== -1) return decodeHex(code);
+
+  const digits = code.toUpperCase().split('').map(toDigit);
 
   let value = ((digits[0] & 8) << 4) + ((digits[1] & 7) << 4) + (digits[0] & 7);
   const address = ((digits[3] & 7) << 12) + ((digits[4] & 8) << 8) + ((digits[5] & 7) << 8) +

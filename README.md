@@ -16,6 +16,7 @@ Decodes NES Game Genie codes to the address/value/key, and vice versa. Hex-style
 
     console.log(encodeHex(0x1123, 0xbd, 0xde)); // 1123:bd?de
     console.log(decodeHex('1123:bd?de')); // { value: 189, address: 4387, wantskey: true, key: 222 }
+    console.log(decode('1123:bd?de')); // { value: 189, address: 4387, wantskey: true, key: 222 }
 
 ## License
 

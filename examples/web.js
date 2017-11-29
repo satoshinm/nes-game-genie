@@ -4,14 +4,14 @@ const { encode, decode, encodeHex, decodeHex } = require('../');
 
 const textarea = document.createElement('textarea');
 
+textarea.value = 'SLXPLOVS';
+
 textarea.cols = 10;
 textarea.rows = 10;
 
 const output = document.createElement('p');
 
-document.body.addEventListener('keyup', (event) => {
-  console.log(event);
-
+function update() {
   output.innerHTML = '';
 
   for (let input of textarea.value.split('\n')) {
@@ -31,8 +31,10 @@ document.body.addEventListener('keyup', (event) => {
     output.appendChild(document.createTextNode(outputLine));
     output.appendChild(document.createElement('br'));
   }
-});
+}
 
+document.body.addEventListener('keyup', update);
+update();
 
 const div = document.createElement('div');
 div.appendChild(textarea);

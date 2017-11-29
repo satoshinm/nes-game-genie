@@ -96,6 +96,19 @@ test('decodeGG hex', (t) => {
   t.equal(decodeRaw('0000?00:00').key, 0x00);
   t.equal(decodeRaw('0000?00:00').wantskey, true);
 
+  t.equal(decodeRaw('0?0:0').address, 0);
+  t.equal(decodeRaw('0?0:0').value, 0);
+  t.equal(decodeRaw('0?0:0').key, 0);
+  t.equal(decodeRaw('0?0:0').wantskey, true);
+
+  t.equal(decodeRaw('0:0').address, 0);
+  t.equal(decodeRaw('0:0').value, 0);
+  t.equal(decodeRaw('0:0').wantskey, false);
+
+  t.equal(decodeRaw(':').address, 0);
+  t.equal(decodeRaw(':').value, 0);
+  t.equal(decodeRaw(':').wantskey, false);
+
   t.end();
 });
 

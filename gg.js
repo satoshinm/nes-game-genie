@@ -86,12 +86,12 @@ function encodeRaw(address, value, key, wantskey) {
 
 function decodeRaw(s) {
   // Conventional address?key:value
-  let match = s.match(/^([0-9a-fA-F]+)(\?[0-9a-fA-F]*)?:([0-9a-fA-F]+)$/);
+  let match = s.match(/^([0-9a-fA-F]*)(\?[0-9a-fA-F]*)?:([0-9a-fA-F]*)$/);
   if (match) {
-    const address = parseInt(match[1], 16);
+    const address = match[1].length !== 0 ? parseInt(match[1], 16) : 0;
     const wantskey = match[2] !== undefined;
     const key = (match[2] !== undefined && match[2].length > 1) ? parseInt(match[2].substring(1), 16) : undefined;
-    const value = parseInt(match[3], 16);
+    const value = match[3].length !== 0 ? parseInt(match[3], 16) : 0;
 
     return { value, address, wantskey, key };
   }

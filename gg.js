@@ -10,7 +10,7 @@ function toLetter(digit) {
   return LETTER_VALUES.substr(digit, 1);
 }
 
-function decode(code) {
+function decodeGG(code) {
   if (code.indexOf(':') !== -1) return decodeHex(code);
 
   const digits = code.toUpperCase().split('').map(toDigit);
@@ -32,7 +32,7 @@ function decode(code) {
   return { value, address, wantskey, key };
 }
 
-function encode(address, value, key, wantskey) {
+function encodeGG(address, value, key, wantskey) {
   let digits = Array(6);
 
   digits[0] = (value & 7) + ((value >> 4) & 8);
@@ -104,5 +104,5 @@ function decodeHex(s) {
   return null;
 }
 
-module.exports = { encode, decode, encodeHex, decodeHex };
+module.exports = { encodeGG, decodeGG, encodeHex, decodeHex };
 

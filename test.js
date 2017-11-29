@@ -1,61 +1,61 @@
 'use strict';
 
 const test = require('tape');
-const {decode, encode, encodeHex, decodeHex} = require('./');
+const {decodeGG, encodeGG, encodeHex, decodeHex} = require('./');
 
-test('decode no key', (t) => {
-  t.equal(decode('SXIOPO').address, 0x11d9);
-  t.equal(decode('SXIOPO').value, 0xad);
-  t.equal(decode('SXIOPO').wantskey, false);
-  t.equal(decode('SXIOPO').key, undefined);
+test('decodeGG no key', (t) => {
+  t.equal(decodeGG('SXIOPO').address, 0x11d9);
+  t.equal(decodeGG('SXIOPO').value, 0xad);
+  t.equal(decodeGG('SXIOPO').wantskey, false);
+  t.equal(decodeGG('SXIOPO').key, undefined);
   t.end();
 });
 
-test('decode with key', (t) => {
-  t.equal(decode('SLXPLOVS').address, 0x1123);
-  t.equal(decode('SLXPLOVS').value, 0xbd);
-  t.equal(decode('SLXPLOVS').wantskey, true);
-  t.equal(decode('SLXPLOVS').key, 0xde);
+test('decodeGG with key', (t) => {
+  t.equal(decodeGG('SLXPLOVS').address, 0x1123);
+  t.equal(decodeGG('SLXPLOVS').value, 0xbd);
+  t.equal(decodeGG('SLXPLOVS').wantskey, true);
+  t.equal(decodeGG('SLXPLOVS').key, 0xde);
   t.end();
 });
 
-test('decode lowercase', (t) => {
-  t.equal(decode('slxplovs').address, 0x1123);
-  t.equal(decode('slxplovs').value, 0xbd);
-  t.equal(decode('slxplovs').wantskey, true);
-  t.equal(decode('slxplovs').key, 0xde);
+test('decodeGG lowercase', (t) => {
+  t.equal(decodeGG('slxplovs').address, 0x1123);
+  t.equal(decodeGG('slxplovs').value, 0xbd);
+  t.equal(decodeGG('slxplovs').wantskey, true);
+  t.equal(decodeGG('slxplovs').key, 0xde);
   t.end();
 });
 
 
-test('encode no key', (t) => {
-  t.equal(encode(0x11d9, 0xad), 'SXIOPO');
-  t.equal(decode(encode(0x11d9, 0xad)).address, 0x11d9);
-  t.equal(decode(encode(0x11d9, 0xad)).value, 0xad);
-  t.equal(decode(encode(0x11d9, 0xad)).wantskey, false);
-  t.equal(decode(encode(0x11d9, 0xad)).key, undefined);
+test('encodeGG no key', (t) => {
+  t.equal(encodeGG(0x11d9, 0xad), 'SXIOPO');
+  t.equal(decodeGG(encodeGG(0x11d9, 0xad)).address, 0x11d9);
+  t.equal(decodeGG(encodeGG(0x11d9, 0xad)).value, 0xad);
+  t.equal(decodeGG(encodeGG(0x11d9, 0xad)).wantskey, false);
+  t.equal(decodeGG(encodeGG(0x11d9, 0xad)).key, undefined);
   t.end();
 });
 
-test('encode no key but wants key', (t) => {
-  t.equal(encode(0x11d9, 0xad, undefined, true), 'SXSOPO');
-  t.equal(decode(encode(0x11d9, 0xad, undefined, true)).address, 0x11d9);
-  t.equal(decode(encode(0x11d9, 0xad, undefined, true)).value, 0xad);
-  t.equal(decode(encode(0x11d9, 0xad, undefined, true)).wantskey, true);
-  t.equal(decode(encode(0x11d9, 0xad, undefined, true)).key, undefined);
+test('encodeGG no key but wants key', (t) => {
+  t.equal(encodeGG(0x11d9, 0xad, undefined, true), 'SXSOPO');
+  t.equal(decodeGG(encodeGG(0x11d9, 0xad, undefined, true)).address, 0x11d9);
+  t.equal(decodeGG(encodeGG(0x11d9, 0xad, undefined, true)).value, 0xad);
+  t.equal(decodeGG(encodeGG(0x11d9, 0xad, undefined, true)).wantskey, true);
+  t.equal(decodeGG(encodeGG(0x11d9, 0xad, undefined, true)).key, undefined);
   t.end();
 });
 
-test('encode with key', (t) => {
-  t.equal(encode(0x1123, 0xbd, 0xde), 'SLXPLOVS');
-  t.equal(decode(encode(0x1123, 0xbd, 0xde)).address, 0x1123);
-  t.equal(decode(encode(0x1123, 0xbd, 0xde)).value, 0xbd);
-  t.equal(decode(encode(0x1123, 0xbd, 0xde)).wantskey, true);
-  t.equal(decode(encode(0x1123, 0xbd, 0xde)).key, 0xde);
+test('encodeGG with key', (t) => {
+  t.equal(encodeGG(0x1123, 0xbd, 0xde), 'SLXPLOVS');
+  t.equal(decodeGG(encodeGG(0x1123, 0xbd, 0xde)).address, 0x1123);
+  t.equal(decodeGG(encodeGG(0x1123, 0xbd, 0xde)).value, 0xbd);
+  t.equal(decodeGG(encodeGG(0x1123, 0xbd, 0xde)).wantskey, true);
+  t.equal(decodeGG(encodeGG(0x1123, 0xbd, 0xde)).key, 0xde);
   t.end();
 });
 
-test('encode hex', (t) => {
+test('encodeGG hex', (t) => {
   t.equal(encodeHex(0x1123, 0xbd), '1123:bd');
   t.equal(encodeHex(0x1123, 0xbd, 0xde), '1123?de:bd');
   t.equal(encodeHex(0x1123, 0xbd, undefined, true), '1123?:bd');
@@ -65,7 +65,7 @@ test('encode hex', (t) => {
   t.end();
 });
 
-test('decode hex', (t) => {
+test('decodeGG hex', (t) => {
   t.equal(decodeHex('1123?de:bd').address, 0x1123);
   t.equal(decodeHex('1123?de:bd').value, 0xbd);
   t.equal(decodeHex('1123?de:bd').key, 0xde);
@@ -99,21 +99,21 @@ test('decode hex', (t) => {
   t.end();
 });
 
-test('decode hex with decode()', (t) => {
-  t.equal(decode('1123?de:bd').address, 0x1123);
-  t.equal(decode('1123?de:bd').value, 0xbd);
-  t.equal(decode('1123?de:bd').key, 0xde);
-  t.equal(decode('1123?de:bd').wantskey, true);
+test('decodeGG hex with decodeGG()', (t) => {
+  t.equal(decodeGG('1123?de:bd').address, 0x1123);
+  t.equal(decodeGG('1123?de:bd').value, 0xbd);
+  t.equal(decodeGG('1123?de:bd').key, 0xde);
+  t.equal(decodeGG('1123?de:bd').wantskey, true);
 
-  t.equal(decode('1123:bd').address, 0x1123);
-  t.equal(decode('1123:bd').value, 0xbd);
-  t.equal(decode('1123:bd').key, undefined);
-  t.equal(decode('1123:bd').wantskey, false);
+  t.equal(decodeGG('1123:bd').address, 0x1123);
+  t.equal(decodeGG('1123:bd').value, 0xbd);
+  t.equal(decodeGG('1123:bd').key, undefined);
+  t.equal(decodeGG('1123:bd').wantskey, false);
 
   t.end();
 });
 
-test('decode hex (key after)', (t) => {
+test('decodeGG hex (key after)', (t) => {
   t.equal(decodeHex('1123:bd?de').address, 0x1123);
   t.equal(decodeHex('1123:bd?de').value, 0xbd);
   t.equal(decodeHex('1123:bd?de').key, 0xde);
@@ -142,11 +142,11 @@ test('decode hex (key after)', (t) => {
   t.end();
 });
 
-test('decode hex with decode() (key after)', (t) => {
-  t.equal(decode('1123:bd?de').address, 0x1123);
-  t.equal(decode('1123:bd?de').value, 0xbd);
-  t.equal(decode('1123:bd?de').key, 0xde);
-  t.equal(decode('1123:bd?de').wantskey, true);
+test('decodeGG hex with decodeGG() (key after)', (t) => {
+  t.equal(decodeGG('1123:bd?de').address, 0x1123);
+  t.equal(decodeGG('1123:bd?de').value, 0xbd);
+  t.equal(decodeGG('1123:bd?de').key, 0xde);
+  t.equal(decodeGG('1123:bd?de').wantskey, true);
 
   t.end();
 });

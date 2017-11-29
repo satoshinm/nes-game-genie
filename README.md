@@ -6,11 +6,11 @@ Game Genie decoder/encoder for Nintendo Entertainment System (npmjs module)
 
 Code examples:
 
-    const {encode, decode} = require('nes-game-genie');
+    const {encodeGG, decodeGG} = require('nes-game-genie');
 
-    console.log(decode('SLXPLOVS')); // { value: 189, address: 4387, wantskey: true, key: 222 }
-    console.log(decode('SXIOPO')); // { value: 173, address: 4569, wantskey: false, key: undefined }
-    console.log(encode(0x1123, 0xbd, 0xde)); // SLXPLOVS
+    console.log(decodeGG('SLXPLOVS')); // { value: 189, address: 4387, wantskey: true, key: 222 }
+    console.log(decodeGG('SXIOPO')); // { value: 173, address: 4569, wantskey: false, key: undefined }
+    console.log(encodeGG(0x1123, 0xbd, 0xde)); // SLXPLOVS
 
 Decodes NES Game Genie codes to the address/value/key, and vice versa. Hex-style codes are also supported:
 
@@ -18,7 +18,7 @@ Decodes NES Game Genie codes to the address/value/key, and vice versa. Hex-style
 
     console.log(encodeHex(0x1123, 0xbd, 0xde)); // 1123?de:bd
     console.log(decodeHex('1123?de:bd')); // { value: 189, address: 4387, wantskey: true, key: 222 }
-    console.log(decode('1123?de:bd')); // { value: 189, address: 4387, wantskey: true, key: 222 }
+    console.log(decodeGG('1123?de:bd')); // { value: 189, address: 4387, wantskey: true, key: 222 }
 
 ### Command-line interface (cli.js)
 

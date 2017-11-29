@@ -10,8 +10,16 @@ function toLetter(digit) {
   return LETTER_VALUES.substr(digit, 1);
 }
 
+function isHexCode(code) {
+  return code.indexOf(':') !== -1;
+}
+
+function isGGCode(code) {
+  return !!code.match(/^[APZLGITYEOXUKSVN]{6}([APZLGITYEOXUKSVN]{2})?$/i);
+}
+
 function decodeGG(code) {
-  if (code.indexOf(':') !== -1) return decodeHex(code);
+  if (isHexCode(code)) return decodeHex(code);
 
   const digits = code.toUpperCase().split('').map(toDigit);
 
@@ -104,5 +112,5 @@ function decodeHex(s) {
   return null;
 }
 
-module.exports = { encodeGG, decodeGG, encodeHex, decodeHex };
+module.exports = { encodeGG, decodeGG, encodeHex, decodeHex, isHexCode, isGGCode };
 

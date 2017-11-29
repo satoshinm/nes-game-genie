@@ -20,6 +20,8 @@ Decodes NES Game Genie codes to the address/value/key, and vice versa. Hex-style
     console.log(decodeHex('1123?de:bd')); // { value: 189, address: 4387, wantskey: true, key: 222 }
     console.log(decodeGG('1123?de:bd')); // { value: 189, address: 4387, wantskey: true, key: 222 }
 
+To check for the code type, you can use `isHexCode` and `isGGCode`.
+
 ### Command-line interface (cli.js)
 
 Passing a Game Genie or hex code will decode and re-encode:

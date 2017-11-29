@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('tape');
-const {decodeGG, encodeGG, encodeHex, decodeHex} = require('./');
+const {decodeGG, encodeGG, encodeHex, decodeHex, isHexCode, isGGCode} = require('./');
 
 test('decodeGG no key', (t) => {
   t.equal(decodeGG('SXIOPO').address, 0x11d9);
@@ -148,5 +148,18 @@ test('decodeGG hex with decodeGG() (key after)', (t) => {
   t.equal(decodeGG('1123:bd?de').key, 0xde);
   t.equal(decodeGG('1123:bd?de').wantskey, true);
 
+  t.end();
+});
+
+test('is code', (t) => {
+  t.equal(isHexCode('0:0'), true);
+  t.equal(isHexCode('0?0:0'), true);
+  t.equal(isHexCode('0:0?0'), true);
+  t.equal(isGGCode('SXIOP'), false);
+  t.equal(isGGCode('SXIOPO'), true);
+  t.equal(isGGCode('SLXPLOVS'), true);
+  t.equal(isGGCode('SLXPLOV'), false);
+  t.equal(isGGCode('slxplovs'), true);
+  t.equal(isGGCode('SLXPLOVSX'), false);
   t.end();
 });

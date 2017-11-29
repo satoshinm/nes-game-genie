@@ -105,9 +105,7 @@ test('decodeGG hex', (t) => {
   t.equal(decodeRaw('0:0').value, 0);
   t.equal(decodeRaw('0:0').wantskey, false);
 
-  t.equal(decodeRaw(':').address, 0);
-  t.equal(decodeRaw(':').value, 0);
-  t.equal(decodeRaw(':').wantskey, false);
+  t.equal(decodeRaw(':'), null);
 
   t.end();
 });

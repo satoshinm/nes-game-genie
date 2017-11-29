@@ -2,7 +2,9 @@
 
 Game Genie decoder/encoder for Nintendo Entertainment System (npmjs module)
 
-Example:
+**[Web-based example](https://satoshinm.github.io/nes-game-genie/)**
+
+Code examples:
 
     const {encode, decode} = require('nes-game-genie');
 

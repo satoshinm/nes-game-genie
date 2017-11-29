@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-const { encode, decode, encodeHex, decodeHex } = require('./');
+const { encode, decode, encodeHex, decodeHex } = require('../');
 
 if (process.argv.length < 3) {
   process.stderr.write(`NES Game Genie encoder/decoder

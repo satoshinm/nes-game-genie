@@ -22,7 +22,7 @@ Decodes NES Game Genie codes to the address/value/key, and vice versa. Hex-style
 
 Passing a Game Genie or hex code will decode and re-encode:
 
-    nes-game-genie $ ./cli.js SLXPLOVS
+    nes-game-genie $ examples/cli.js SLXPLOVS
     Input:    SLXPLOVS
 
     Address:  1123
@@ -33,7 +33,7 @@ Passing a Game Genie or hex code will decode and re-encode:
     Hex code: 1123?de:bd
     GG code:  SLXPLOVS
 
-    nes-game-genie $ ./cli.js 1123?de:bd
+    nes-game-genie $ examples/cli.js 1123?de:bd
     Input:    1123?de:bd
 
     Address:  1123

@@ -12,7 +12,7 @@ Code examples:
     console.log(decodeGG('SXIOPO')); // { value: 173, address: 4569, wantskey: false, key: undefined }
     console.log(encodeGG(0x1123, 0xbd, 0xde)); // SLXPLOVS
 
-Decodes NES Game Genie codes to the address/value/key, and vice versa. Hex-style codes are also supported:
+Decodes NES Game Genie codes to the address/value/key, and vice versa. "Raw" style codes are also supported:
 
     const {encodeHex, decodeHex} = require('nes-game-genie');
 
@@ -20,11 +20,11 @@ Decodes NES Game Genie codes to the address/value/key, and vice versa. Hex-style
     console.log(decodeHex('1123?de:bd')); // { value: 189, address: 4387, wantskey: true, key: 222 }
     console.log(decodeGG('1123?de:bd')); // { value: 189, address: 4387, wantskey: true, key: 222 }
 
-To check for the code type, you can use `isHexCode` and `isGGCode`.
+To check for the code type, you can use `isRawCode` and `isGGCode`.
 
 ### Command-line interface (cli.js)
 
-Passing a Game Genie or hex code will decode and re-encode:
+Passing a Game Genie or raw code will decode and re-encode:
 
     nes-game-genie $ examples/cli.js SLXPLOVS
     Input:    SLXPLOVS

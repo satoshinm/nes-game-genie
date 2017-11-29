@@ -10,7 +10,7 @@ function toLetter(digit) {
   return LETTER_VALUES.substr(digit, 1);
 }
 
-function isHexCode(code) {
+function isRawCode(code) {
   return code.indexOf(':') !== -1;
 }
 
@@ -19,7 +19,7 @@ function isGGCode(code) {
 }
 
 function decodeGG(code) {
-  if (isHexCode(code)) return decodeHex(code);
+  if (isRawCode(code)) return decodeRaw(code);
 
   const digits = code.toUpperCase().split('').map(toDigit);
 
@@ -70,7 +70,7 @@ function toHex(n, width) {
   return '0000'.substring(0, width - s.length) + s;
 }
 
-function encodeHex(address, value, key, wantskey) {
+function encodeRaw(address, value, key, wantskey) {
   let s = toHex(address, 4);
 
   if (key !== undefined || wantskey) {
@@ -86,7 +86,7 @@ function encodeHex(address, value, key, wantskey) {
   return s;
 }
 
-function decodeHex(s) {
+function decodeRaw(s) {
   // Conventional address?key:value
   let match = s.match(/^([0-9a-fA-F]+)(\?[0-9a-fA-F]*)?:([0-9a-fA-F]+)$/);
   if (match) {
@@ -112,5 +112,5 @@ function decodeHex(s) {
   return null;
 }
 
-module.exports = { encodeGG, decodeGG, encodeHex, decodeHex, isHexCode, isGGCode };
+module.exports = { encodeGG, decodeGG, encodeRaw, decodeRaw, isRawCode, isGGCode };
 

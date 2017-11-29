@@ -112,3 +112,41 @@ test('decode hex with decode()', (t) => {
 
   t.end();
 });
+
+test('decode hex (key after)', (t) => {
+  t.equal(decodeHex('1123:bd?de').address, 0x1123);
+  t.equal(decodeHex('1123:bd?de').value, 0xbd);
+  t.equal(decodeHex('1123:bd?de').key, 0xde);
+  t.equal(decodeHex('1123:bd?de').wantskey, true);
+
+  t.equal(decodeHex('1123:bd?').address, 0x1123);
+  t.equal(decodeHex('1123:bd?').value, 0xbd);
+  t.equal(decodeHex('1123:bd?').key, undefined);
+  t.equal(decodeHex('1123:bd?').wantskey, true);
+
+  t.equal(decodeHex('DEAD:BD?DE').address, 0xdead);
+  t.equal(decodeHex('DEAD:BD?DE').value, 0xbd);
+  t.equal(decodeHex('DEAD:BD?DE').key, 0xde);
+  t.equal(decodeHex('DEAD:BD?DE').wantskey, true);
+
+  t.equal(decodeHex('0123:0b?0e').address, 0x0123);
+  t.equal(decodeHex('0123:0b?0e').value, 0x0b);
+  t.equal(decodeHex('0123:0b?0e').key, 0x0e);
+  t.equal(decodeHex('0123:0b?0e').wantskey, true);
+
+  t.equal(decodeHex('0000:00?00').address, 0x0000);
+  t.equal(decodeHex('0000:00?00').value, 0x00);
+  t.equal(decodeHex('0000:00?00').key, 0x00);
+  t.equal(decodeHex('0000:00?00').wantskey, true);
+
+  t.end();
+});
+
+test('decode hex with decode() (key after)', (t) => {
+  t.equal(decode('1123:bd?de').address, 0x1123);
+  t.equal(decode('1123:bd?de').value, 0xbd);
+  t.equal(decode('1123:bd?de').key, 0xde);
+  t.equal(decode('1123:bd?de').wantskey, true);
+
+  t.end();
+});

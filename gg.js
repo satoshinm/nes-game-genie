@@ -79,16 +79,29 @@ function encodeHex(address, value, key, wantskey) {
 }
 
 function decodeHex(s) {
-  //const match = s.match(/([0-9a-fA-F]+):([0-9a-fA-F]+)(\?[0-9a-fA-F]*)?/);
-  const match = s.match(/([0-9a-fA-F]+)(\?[0-9a-fA-F]*)?:([0-9a-fA-F]+)/);
-  if (!match) return null;
+  // Conventional address?key:value
+  let match = s.match(/^([0-9a-fA-F]+)(\?[0-9a-fA-F]*)?:([0-9a-fA-F]+)$/);
+  if (match) {
+    const address = parseInt(match[1], 16);
+    const wantskey = match[2] !== undefined;
+    const key = (match[2] !== undefined && match[2].length > 1) ? parseInt(match[2].substring(1), 16) : undefined;
+    const value = parseInt(match[3], 16);
 
-  const address = parseInt(match[1], 16);
-  const wantskey = match[2] !== undefined;
-  const key = (match[2] !== undefined && match[2].length > 1) ? parseInt(match[2].substring(1), 16) : undefined;
-  const value = parseInt(match[3], 16);
+    return { value, address, wantskey, key };
+  }
 
-  return { value, address, wantskey, key };
+  // Non-standard but acceptable address:value?key
+  match = s.match(/^([0-9a-fA-F]+):([0-9a-fA-F]+)(\?[0-9a-fA-F]*)?$/);
+  if (match) {
+    const address = parseInt(match[1], 16);
+    const value = parseInt(match[2], 16);
+    const wantskey = match[3] !== undefined;
+    const key = (match[3] !== undefined && match[3].length > 1) ? parseInt(match[3].substring(1), 16) : undefined;
+
+    return { value, address, wantskey, key };
+  }
+
+  return null;
 }
 
 module.exports = { encode, decode, encodeHex, decodeHex };

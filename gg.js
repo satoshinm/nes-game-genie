@@ -19,8 +19,6 @@ function isGGCode(code) {
 }
 
 function decodeGG(code) {
-  if (isRawCode(code)) return decodeRaw(code);
-
   const digits = code.toUpperCase().split('').map(toDigit);
 
   let value = ((digits[0] & 8) << 4) + ((digits[1] & 7) << 4) + (digits[0] & 7);

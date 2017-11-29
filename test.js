@@ -99,20 +99,6 @@ test('decodeGG hex', (t) => {
   t.end();
 });
 
-test('decodeGG hex with decodeGG()', (t) => {
-  t.equal(decodeGG('1123?de:bd').address, 0x1123);
-  t.equal(decodeGG('1123?de:bd').value, 0xbd);
-  t.equal(decodeGG('1123?de:bd').key, 0xde);
-  t.equal(decodeGG('1123?de:bd').wantskey, true);
-
-  t.equal(decodeGG('1123:bd').address, 0x1123);
-  t.equal(decodeGG('1123:bd').value, 0xbd);
-  t.equal(decodeGG('1123:bd').key, undefined);
-  t.equal(decodeGG('1123:bd').wantskey, false);
-
-  t.end();
-});
-
 test('decodeGG hex (key after)', (t) => {
   t.equal(decodeRaw('1123:bd?de').address, 0x1123);
   t.equal(decodeRaw('1123:bd?de').value, 0xbd);
@@ -138,15 +124,6 @@ test('decodeGG hex (key after)', (t) => {
   t.equal(decodeRaw('0000:00?00').value, 0x00);
   t.equal(decodeRaw('0000:00?00').key, 0x00);
   t.equal(decodeRaw('0000:00?00').wantskey, true);
-
-  t.end();
-});
-
-test('decodeGG hex with decodeGG() (key after)', (t) => {
-  t.equal(decodeGG('1123:bd?de').address, 0x1123);
-  t.equal(decodeGG('1123:bd?de').value, 0xbd);
-  t.equal(decodeGG('1123:bd?de').key, 0xde);
-  t.equal(decodeGG('1123:bd?de').wantskey, true);
 
   t.end();
 });

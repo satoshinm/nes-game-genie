@@ -1,15 +1,14 @@
 {
-  "name": "nes-game-genie",
-  "version": "1.2.0",
-  "description": "Game Genie decoder/encoder for Nintendo Entertainment System",
-  "main": "gg.js",
-  "files": ["gg.js"],
-  "scripts": {
-    "test": "node test.js"
-  },
+  "name": "nes-game-genie-example",
+  "version": "0.0.1",
+  "description": "Example of using Game Genie decoder/encoder for Nintendo Entertainment System",
+  "main": "web.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/satoshinm/nes-game-genie.git"
+  },
+  "scripts": {
+    "webpack": "webpack web.js bundle.js"
   },
   "keywords": [
     "nes",
@@ -26,6 +25,6 @@
   },
   "homepage": "https://github.com/satoshinm/nes-game-genie#readme",
   "devDependencies": {
-    "tape": "^4.8.0"
+    "webpack": "^3.8.1"
   }
 }

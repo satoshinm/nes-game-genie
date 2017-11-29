@@ -18,11 +18,11 @@ process.stdout.write(`Input:    ${code}\n\n`);
 const decoded = decode(code);
 //console.log(decoded);
 process.stdout.write(`Address:  ${decoded.address.toString(16)}\n`);
-process.stdout.write(`Value:    ${decoded.value.toString(16)}\n`);
 if (decoded.key !== undefined) {
   process.stdout.write(`Key:      ${decoded.key.toString(16)}\n`);
 }
 process.stdout.write(`Wantskey  ${decoded.wantskey}\n`);
+process.stdout.write(`Value:    ${decoded.value.toString(16)}\n`);
 process.stdout.write(`\n`);
 
 const hexCode = encodeHex(decoded.address, decoded.value, decoded.key, decoded.wantskey);

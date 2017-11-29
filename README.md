@@ -26,24 +26,22 @@ Passing a Game Genie or hex code will decode and re-encode:
     Input:    SLXPLOVS
 
     Address:  1123
-    Value:    bd
     Key:      de
     Wantskey  true
+    Value:    bd
 
     Hex code: 1123?de:bd
     GG code:  SLXPLOVS
-
     nes-game-genie $ examples/cli.js 1123?de:bd
     Input:    1123?de:bd
 
     Address:  1123
-    Value:    bd
     Key:      de
     Wantskey  true
+    Value:    bd
 
     Hex code: 1123?de:bd
     GG code:  SLXPLOVS
-
 
 ## License
 
